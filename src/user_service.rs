@@ -1,4 +1,5 @@
 use async_graphql::ID;
+use async_graphql::Object;
 
 #[derive(Clone)]
 pub struct User {

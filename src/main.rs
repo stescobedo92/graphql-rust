@@ -2,9 +2,9 @@ mod db;
 mod query_engine;
 mod user_service;
 
-use async_graphql::{EmptyMutation, EmptySubscription};
-use async_graphql::parser::types::DirectiveLocation::Schema;
+use async_graphql::{EmptyMutation, EmptySubscription, Response};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
+use async_graphql::Schema;
 use axum::Router;
 use axum::routing::post;
 use crate::query_engine::Query;
@@ -19,9 +19,9 @@ async fn graphql_handler(graph_qlrequest: GraphQLRequest) -> GraphQLResponse {
         EmptySubscription
     );
 
-    let response = schema.execute(graph_qlrequest.into_inner()).await;
+    let response:Response = schema.execute(graph_qlrequest.into_inner()).await;
 
-    response.into();
+    response.into()
 }
 
 #[tokio::main]

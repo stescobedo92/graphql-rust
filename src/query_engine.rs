@@ -1,4 +1,6 @@
 use crate::db::DB;
+use crate::user_service::User;
+use async_graphql::Object;
 
 pub struct Query {
     pub db: DB
